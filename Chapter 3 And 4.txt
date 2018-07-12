@@ -1,0 +1,40 @@
+Case Function:
+	select last_name,job_id,salary,case job_id 
+	when 'IT_PROG' THEN 1.10*salary
+	when 'ST_CLERK' THEN 1.15*salary 
+	else salary end "REVISED SALARY" 
+	from employees;
+
+Finction of sum,max,min,avg,count:
+	select sum(salary),avg(salary),count(salary),min(salary),max(salary) from employees;
+
+Function of Group By:
+	select department_id, round(avg(salary)) from employees group by department_id;
+
+Function of Decode:
+	select last_name,job_id,salary, decode(job_id, 'IT_PROG', 1.10*salary,
+	'ST_CLERK', 1.15*salary,salary) 
+	REVISED_SALARY from employees;
+
+Function of Taxt_RAte Using Trunct:
+	select last_name, salary,decode(trunc(salary/2000,0),0,0.00,1,0.9,2,0.20,3,0.30,4,0.40)
+	 tax_rate from employees 
+	where department_id=80;
+Example 1,2,3,4:Page No:- 3-62
+	select employee_id,last_name,salary, round((((salary*15.5)/100))+salary) "New Salary", round((salary*15.5)/100) "Increase" 
+	from employees where employee_id between 200 and 206;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
