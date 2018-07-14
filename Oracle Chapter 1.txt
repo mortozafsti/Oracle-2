@@ -1,0 +1,21 @@
+Select Table:
+	select * from employees; 
+
+Arithmetic Operators:
+	select first_name, salary,salary+300 as salary_Increase from employees; 
+
+Arithmetic Operators Multiple:
+	select first_name, salary,12*salary+100 as salary_Increase from employees;
+
+Null Value:
+	select first_name, salary,12*salary+100*commission_pct as salary_Increase from employees;
+
+Concatenation operator: 
+	select first_name || first_name as "Details", salary,salary+100 from employees;
+
+Concatenation operator 1:
+	select first_name, 'Mr ' || first_name as FIRSt_NAME ,last_name from employees;
+
+Literal operator:
+	select first_name, 'Mr ' || first_name || ' is a Good boy' as FIRSt_NAME ,last_name from employees;
+     
