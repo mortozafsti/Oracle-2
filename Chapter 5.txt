@@ -1,0 +1,30 @@
+Illegal:
+	select department_id,count(last_name) from employees group by department_id;
+
+Having:
+	select department_id,avg(salary) from employees having avg(salary) > 8000 group by department_id;
+
+Having 1 Page 4-21:
+	select department_id,max(salary) from employees group by department_id having max(salary) > 10000;
+
+natural join:
+	select department_id,department_name,manager_id,location_id,street_address, city from departments natural join locations;
+
+natural join by condition:
+	select department_id,department_name,manager_id,location_id,street_address, city from departments natural join locations where department_id in(20,50);
+
+Using Clause:
+	select employees.employee_id,employees.last_name,departments.location_id,department_id
+	from employees join departments
+	using (department_id);
+
+natural Join 2:
+	select employee_id,first_name,department_name,manager_id from employees natural join departments;
+
+Using Clause 3:
+	select employees.employee_id,last_name,first_name,phone_number,email,employees.manager_id,
+	departments.location_id,department_id,department_name,departments.manager_id
+	from employees join departments
+	using (department_id);
+
+
