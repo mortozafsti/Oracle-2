@@ -1,0 +1,58 @@
+Exercise:1
+	select first_name,last_name,department_name,location_id 
+	from employees e, departments d where e.department_id = d.department_id;
+
+Exercise:2
+	select employees.employee_id,first_name,hire_date,employees.manager_id,departments.department_name,department_id,departments.manager_id 
+	from employees join departments using(department_id);
+
+Exercise:3
+	select employee_id,first_name,hire_date,department_id,manager_id 
+	from employees natural join departments;
+
+Exercise:4
+	select  distinct first_name,job_id
+ 	from employees where employee_id between 100 and 129;
+
+Retriving Record by On clause:
+	select e.employee_id,e.last_name,e.department_id,d.department_id,d.location_id
+	from employees e join departments d
+	on (e.department_id = d.department_id);
+
+Self Join:
+	select e.last_name emp, m.last_name mgr from employees e join employees m
+	on (e.manager_id = m.employee_id);
+
+	select e.last_name emp, m.last_name mgr from employees e join employees m
+	on (e.manager_id = m.employee_id) and e.manager_id=149;
+
+EquiJoin Join Three TAble Join Three TAble:
+	select employee_id,department_name,city 
+	from employees e 
+	join departments d
+	on d.department_id = e.department_id
+	join locations l
+	on d.location_id = l.location_id;
+
+Nonequijoin:
+	select e.last_name,e.salary,j.job_title 
+	from employees e join jobs j
+	on e.salary > j.min_salary;
+
+Left Outer Join:
+	select e.last_name,e.department_id,d.department_name
+	from employees e left outer join departments d
+	on (e.department_id = d. department_id);
+
+Right Outer Join:
+	select e.last_name,e.department_id,d.department_name
+	from employees e right outer join departments d
+	on (e.department_id = d. department_id);
+
+Full Outer Join:
+	select e.last_name,e.department_id,d.department_name
+	from employees e full outer join departments d
+	on (e.department_id = d. department_id);
+
+
+
