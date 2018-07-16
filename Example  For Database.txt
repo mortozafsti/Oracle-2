@@ -1,0 +1,30 @@
+Example 1:
+	select e.employee_id,last_name,job_id,d.department_id,department_name
+	from employees e full outer join departments d
+	on(e.department_id = d.department_id);
+
+Example 2:
+	select e.employee_id,last_name,job_id,d.department_id,department_name
+	from employees e left outer join departments d
+	on(e.department_id = d.department_id);
+
+Example 3:
+	select e.employee_id,last_name,job_id,d.department_id,department_name
+	from employees e right outer join departments d
+	on(e.department_id = d.department_id);
+
+Example 4:
+	select e.employee_id,last_name,job_id,hire_date, d.department_id,department_name,location_id
+	from employees e join departments d
+	on(e.department_id = d.department_id);
+
+Example 5:
+	select e.employee_id,last_name,job_id,hire_date,first_name, d.location_id,department_id
+	from employees e join departments d
+	using(department_id);
+
+
+
+
+
+
