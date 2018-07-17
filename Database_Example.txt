@@ -1,0 +1,38 @@
+Natural Join:
+	select employee_id,last_name,first_name,hire_date,department_name,department_id
+	from employees e
+	natural join departments
+
+On Clause:
+	select e.employee_id,last_name,job_id,hire_date, d.department_id,department_name
+	from employees e join departments d
+	on(e.department_id = d.department_id);
+
+Using Clause:
+	select e.employee_id,last_name,job_id,hire_date,d.location_id,department_id,department_name
+	from employees e join departments d
+	using(department_id);
+
+Group By:
+	select department_id, avg(salary),min(salary)
+	from employees
+	group by department_id;
+
+Group By Multiple Column:
+	select department_id,job_id, sum(salary) 
+	from employees
+	where department_id > 40
+	group by department_id,job_id
+	order by department_id; 
+
+Having Clause:
+	select department_id, max(salary)
+	from employees
+	group by department_id
+	having max(salary)>1000;
+
+
+
+
+
+	
