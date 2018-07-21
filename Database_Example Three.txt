@@ -1,0 +1,27 @@
+Ques 3 Page NO 7-11:
+	select department_id,min(salary) from employees 
+	group by department_id 
+	having min(salary) > (select min(salary) from employees where department_id = 50); 
+
+Ques 3 Page NO 7-12:
+	select employee_id,last_name from employees 
+	where salary in (select min(salary) from employees group by department_id);
+	
+Ques 3 Page NO 7-15:
+	select employee_id,last_name,job_id, salary from employees 
+	where salary <any (select salary from employees where job_id = 'IT_PROG') 
+	and job_id <> 'IT_PROG';
+
+Ques 3 Page NO 7-16:
+	select employee_id,last_name,job_id, salary from employees 
+	where salary <all (select salary from employees where job_id = 'IT_PROG') 
+	and job_id <> 'IT_PROG';
+	
+Ques 1:
+	select * from employees 
+	where salary >  (select salary from employees where last_name = 'Abel');
+
+Ques 2;
+	select last_name,job_id,salary from employees 
+	where job_id = (select job_id from employees where employee_id = 141) 
+	and salary > (select salary from employees where employee_id = 143);
