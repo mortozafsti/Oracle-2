@@ -1,0 +1,47 @@
+Natural Join:
+	select department_name,department_id,city,location_id
+	from departments
+	natural join locations;
+
+BY Using:
+	select e.first_name,salary,last_name,d.department_name,d.manager_id,department_name
+	from employees e join departments d using (department_id)
+	where department_id in(10,60);
+
+Union Operator:
+	select employee_id,job_id from employees
+	union
+	select employee_id,job_id from job_history
+
+Union All Operator:
+	select employee_id,job_id from employees
+	union all
+	select employee_id,job_id from job_history;
+
+Intersect:
+	select employee_id,job_id from employees
+	intersect
+	select employee_id,job_id from job_history
+Minus:
+	select employee_id from employees
+	minus
+	select employee_id from job_history
+    OR,
+	select employee_id,job_id,salary,last_name from employees
+	minus
+	select employee_id,job_id,0,'' from job_history;
+
+SubQuery Insert:
+	insert into sales_reps(id,name,salary) 
+	select employee_id,last_name,salary 
+	from employees 
+	where employee_id = 207;
+
+
+
+
+
+
+
+
+
