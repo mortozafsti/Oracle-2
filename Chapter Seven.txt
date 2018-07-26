@@ -37,6 +37,14 @@ SubQuery Insert:
 	from employees 
 	where employee_id = 207;
 
+Update:
+	update sales_reps 
+	set name='G M Mortoza Ahmed',salary=121212 
+	where id = 1;
+
+Delete:
+	delete from sales_reps where id !=1
+
 
 
 
