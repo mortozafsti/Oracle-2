@@ -45,8 +45,10 @@ Update:
 Delete:
 	delete from sales_reps where id !=1
 
-
-
+Intersect Query:
+	select employee_id,job_id from employees
+	intersect
+	select employee_id,job_id from job_history
 
 
 
