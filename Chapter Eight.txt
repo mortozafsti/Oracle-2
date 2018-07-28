@@ -1,0 +1,15 @@
+Truncate :
+	truncate table sales_reps;
+
+Update:
+	update abc set name='Shakil' where id=1;
+
+Delete:
+	delete from abc where id=3;
+
+RollBack:
+	rollback to trans_1;
+
+SavePoint:
+	savepoint trans_1;
+
