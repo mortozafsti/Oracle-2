@@ -1,0 +1,26 @@
+Truncate :
+	truncate table sales_reps;
+
+Update:
+	update abc set name='Shakil' where id=1;
+
+Delete:
+	delete from abc where id=3;
+
+RollBack:
+	rollback to trans_1;
+
+SavePoint:
+	savepoint trans_1;
+
+PK,Not Null,Unique:
+	create table test(id number(6) primary key,name varchar2(2)
+	 unique not null,create_date Date default(sysdate));
+
+	OR,
+
+	create table test1(id number(10) primary key,name varchar2(20),
+	Pbone_Number number(20) unique not null);
+
+
+
