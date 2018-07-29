@@ -1,0 +1,33 @@
+Foreign Key:
+	create table employees(emp_id number(5) primary key,
+	emp_name varchar2(10) not null,
+	department_id number(3),constraint emp_dept_fk foreign key (department_id) 
+	references departments(dep_id));
+Natural Join:
+	select emp_id,emp_name,dep_name from employees 
+	natural join departments where dep_id=department_id;
+Foreign key Structure:
+	department_id number(10),constraint emp_dept_fk foreign key (department_id) 
+	references departments(dep_id));
+Alter:
+	alter table country add name varchar2(20) not null;
+
+Modify:
+	alter table country modify name varchar2(20) unique ;
+
+Drop:
+	alter table country drop column name ;
+
+Rename Column:
+	alter table country rename column id to country_id;
+
+Table Rename:
+	alter table country rename to com;
+
+Cheek Constraint:
+	
+
+	
+
+
+
