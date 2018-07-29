@@ -1,0 +1,85 @@
+	/////////////////Table Country/////////////////
+Create Table Country:
+	create table country(country_id number(3),country_name varchar2(10));
+
+
+	/////////////////Table Division/////////////////
+Create Table Division;
+	create table division(division_id number(3),division_name varchar2(10),country_id number(3),
+	constraint ct_dv_fk foreign key (country_id) 
+	references country(country_id));
+
+Natural Join:
+	select division_id,division_name,country_name from division natural join country;
+	OR,
+	select d.division_id,division_name,c.country_name from division d, country c where d.country_id=d.country_id;
+
+	/////////////////Table District/////////////////
+Create Table District:
+	create table district(district_id number(3) primary key not null, district_name varchar2(10) not null unique, 
+	division_id number(3), constraint dis_div_fk foreign key (division_id) 
+	references division(division_id));
+
+Insert Data Into District:
+	1.insert into district(district_id,district_name,division_id)values(111,'Savar',100);
+	2.insert into district(district_id,district_name,division_id)values(112,'Gazipur',100);
+
+Get Some Data From District:
+	select district_id, district_name,division_name from district natural join division;
+
+	/////////////////Table Thana/////////////////
+Create table Thana:
+	create table Thana(thana_id number(3) primary key not null,thana_name varchar2(10) not null unique,
+	district_id number(3),constraint th_dis_fk foreign key(district_id) 
+	references district(district_id));
+
+Insert Data Into Thana:
+	1.insert into thana(thana_id,thana_name,district_id)values(222,'demra',111);
+	2. insert into thana(thana_id,thana_name,district_id)values(223,'Konabari',112);
+
+Get Some Data From Thana:
+	select t.thana_id,t.thana_name,d.district_name from thana t, district d where t.district_id=d.district_id;
+
+	/////////////////Table Union/////////////////
+Create Table Union:
+	create table unions(union_id number(3) primary key not null,union_name varchar2(15) not null unique,
+	thana_id number(3),constraint uni_tha_fk foreign key(thana_id) 
+	references thana(thana_id));
+
+Insert into Uions:
+	 insert into unions(union_id,union_name,thana_id)values(333,'west demra',222);
+
+Get Some Data From Unions:
+	select u.union_id,u.union_name,t.thana_name from unions u, thana t where u.thana_id = t.thana_id;
+
+	/////////////////Table Village/////////////////
+Create Table Village:
+	create table village(village_id number(3) primary key not null,village_name varchar2(15) not null unique,
+	union_id number(3),constraint vil_uni_fk foreign key(union_id) 
+	references unions(union_id));
+
+Insert into Village:
+	1.insert into village(village_id,village_name,union_id)values(444,'Kemkacha',333);
+	2.insert into village(village_id,village_name,union_id)values(445,'mkachapur',334);
+
+Get Some Data From Village:
+	select v.village_id,v.village_name,u.union_name from village v, unions u where v.union_id = u.union_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
