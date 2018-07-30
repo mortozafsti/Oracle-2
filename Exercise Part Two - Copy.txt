@@ -1,0 +1,44 @@
+Advance Query:
+	select d.district_id,a.thana_name,d.district_name,t.division_name 
+	from district d, division t, thana a where d.division_id = t.division_id 
+	and d.district_id=a.district_id;
+
+Create View:
+	create view empview AS select employee_id,last_name,salary from employees
+	where department_id=80;
+
+View Replace:
+	create or replace view empview as select employee_id,last_name,salary from employees;
+
+Create Complex View:
+	create or replace view dept_sum_vu(name,minsal,maxsal,avgsal) 
+	AS select d.department_name,min(e.salary),max(e.salary),avg(e.salary) 
+	from employees e join departments d
+	on (e.department_id = d.department_id) group by d.department_name;
+
+Question:01
+	Create a view for displaying how many student under a single twacher.
+
+create table Teacher:
+	create table teacher(t_id number(2) primary key,t_name varchar2(10) not null,salary number(7,2) 
+	check(salary > 5000),mobile number(11) unique,joining_date Date default sysdate);
+
+insert into Teacher:
+	1.insert into teacher(t_id,t_name,salary,mobile,joining_date)
+		values(2,'Shofiq',7000,01722932453,'27-Jun-17');
+	2.insert into teacher(t_id,t_name,salary,mobile,joining_date)
+		values(1,'Rezaul Islam',6000,01722932483,'25-may-18');
+
+Create table Student:
+	create table student(id number(5) primary key,name varchar2(10),educaion_Q varchar2(5) not null,
+	district varchar2(10),teacher_id number(2),constraint t_s_fk foreign key (teacher_id) 
+	references teacher(t_id));
+
+insert into Student::
+	1.insert into student(id,name,educaion_q,district,teacher_id)values(11,'Mortoza','MBA','Jessore',1);
+	2.insert into student(id,name,educaion_q,district,teacher_id)values(12,'Mahabub','MA','Bogra',1);
+	3.insert into student(id,name,educaion_q,district,teacher_id)values(13,'Ruhul','LLB','Savar',2);
+	4.insert into student(id,name,educaion_q,district,teacher_id)values(14,'Amin','SSc','Dhaka',3);
+
+Create View and get Some Data Who are the same teacher under Styding:
+	create view ttt as select id,name,teacher_id from student where teacher_id=1;
