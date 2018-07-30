@@ -1,0 +1,12 @@
+Advance Query:
+	select d.district_id,a.thana_name,d.district_name,t.division_name 
+	from district d, division t, thana a where d.division_id = t.division_id 
+	and d.district_id=a.district_id;
+
+Create View:
+	create view empview AS select employee_id,last_name,salary from employees
+	where department_id=80;
+
+View Replace:
+	create or replace view empview as select employee_id,last_name,salary from employees;
+
