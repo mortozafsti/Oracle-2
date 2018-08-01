@@ -5,7 +5,7 @@ Practise 6_2:Page 21:
 	select employee_id,last_name,salary from employees where salary > (select avg(salary)  from employees) order by salary;
 
 Practise 6_3:Page 21:
-	select employee_id,last_name from employees where  last_name like '%au%';
+	select employee_id,last_name from employees where  last_name like '%u%';
 
 Practise 6_4:Page 21:
 	select e.last_name,d.department_id,e.job_id from employees e, departments d where location_id = 1700;
