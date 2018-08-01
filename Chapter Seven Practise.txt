@@ -1,0 +1,10 @@
+Practise 7_1:
+	select department_id from employees  where job_id != 'ST_CLERK'
+	union
+	select department_id from departments 
+
+Practise 7_2:
+	
+Practise 7_3:
+	
+Practise 7_4:
