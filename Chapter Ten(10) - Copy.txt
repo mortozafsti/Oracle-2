@@ -1,0 +1,35 @@
+Create Sequence Command into milton User:
+	1.create sequence milton_seq increment by 5 start with 50 maxvalue 80;
+	2.create sequence mil_seq increment by 1 start with 1 maxvalue 999 nocache nocycle;
+
+Modify Sequence:
+	1.alter sequence milton_seq increment by 5  maxvalue 90;
+
+Question No 01:
+	Create Table:
+		Dept=create table dep(id number(3) primary key not null,name varchar(10) not null);
+		Emp=create table emp(id number(3) primary key not null,name varchar(10),
+		    salary number(8,2) check(salary < 50000),mobile number(11) unique,
+		    dept_id number(3),constraint dep_emp_fk foreign key(dept_id) references dep(id));
+Create Sequence:
+	1. create sequence dep_seq increment by 10 start with 50 maxvalue 100;
+	2.create sequence emp_seq increment by 5 start with 1 maxvalue 200;
+
+Insert data into Dep:
+	1.insert into dep(id,name)values(dep_seq.nextval,'Milton');
+	2.insert into dep(id,name)values(dep_seq.nextval,'Mortoza');
+	3.insert into dep(id,name)values(dep_seq.nextval,'Mahabub');
+
+Insert data into Dep:
+	1.insert into emp(id,name,salary,mobile,dept_id)values(emp_seq.nextval,'Ston',40000,01944972483,80);
+
+Create View:
+	nview = create view nview as select e.id,e.name,d.name "dept_name" from emp e, dep d where e.dept_id = d.id;
+
+
+
+
+
+
+
+
