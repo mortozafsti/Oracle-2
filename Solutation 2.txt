@@ -28,8 +28,15 @@ Practice 11:
 	select employee_id,last_name,salary,department_id from employees 
 	where manager_id = &mgr_num order by &order_col;
 Practice 12:
-	
+	select last_name from employees where last_name like '%a';
+	select last_name from employees where last_name like '__a%';
 Practice 13:
+	select last_name from employees where last_name like '%a%' 
+	and last_name like '%e%';
 Practice 14:
+	select last_name,job_id,salary from employees 
+	where job_id in('SA_REP','ST_CLERK') 
+	and salary not in(2500,3500,7000);
 Practice 15:
+	select last_name Employee,salary "Monthly Salary",commission_pct from employees where commission_pct = .20;
 	
