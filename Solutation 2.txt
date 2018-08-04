@@ -24,5 +24,12 @@ Practice 9:
 	order by salary, commission_pct desc;
 Practice 10:
 	select last_name,salary from employees where salary > &sal_amt;
+Practice 11:
+	select employee_id,last_name,salary,department_id from employees 
+	where manager_id = &mgr_num order by &order_col;
+Practice 12:
 	
+Practice 13:
+Practice 14:
+Practice 15:
 	
