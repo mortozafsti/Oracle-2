@@ -1,0 +1,8 @@
+Show Sequence Infromation:
+	select sequence_name,min_value, max_value, increment_by, last_number from user_sequences;
+
+Describe Synonyms:
+	describe user_synonyms;
+
+Describe Sequences:
+	describe user_sequences;
