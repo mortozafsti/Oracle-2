@@ -1,0 +1,28 @@
+Practice 1:
+	select last_name,salary from employees where salary > 12000;
+Practice 2:
+	select last_name,department_id from employees where employee_id = 176;
+Practice 3:
+	select last_name,salary from employees where salary not  between 5000 and 12000;
+Practice 4:
+	select last_name,job_id,hire_date from employees where last_name = any('Matos', 'Taylor') order by hire_date;
+	select last_name,job_id,hire_date from employees where last_name  in('Matos', 'Taylor') order by hire_date;
+Practice 5:
+	select last_name,department_id from employees where department_id in(20,50) order by last_name ASC;
+Practice 6:
+	select last_name Employee,salary Monthly_Salary 
+	from employees where salary between 5000 and 12000 
+	and department_id in(20,50) order by last_name DESC;
+Practice 7:
+	select last_name,hire_date from employees where hire_date like '%94%';
+Practice 8:
+	select last_name,job_id,manager_id from employees where manager_id is null;
+Practice 9:
+	select last_name,salary,commission_pct 
+	from employees 
+	where commission_pct is not null 
+	order by salary, commission_pct desc;
+Practice 10:
+	select last_name,salary from employees where salary > &sal_amt;
+	
+	
