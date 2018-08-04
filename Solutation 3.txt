@@ -1,0 +1,39 @@
+Practice 1:
+	select sysdate "date" from dual;
+Practice 2:
+	select employee_id, last_name,salary, salary*15.5  "New Salary" from employees;
+Practice 3:
+	select employee_id, last_name,salary, salary*15.5  "New Salary" from employees;
+Practice 4:
+	select employee_id, last_name,salary, salary*15.5  "New Salary",(salary*15.5)-salary Increase from employees;
+Practice 5:
+	select initcap (last_name)Name ,length(last_name) Length from employees 
+	where last_name like 'J%' 
+	or last_name like'M%' 
+	or last_name like 'A%' 
+	order by last_name;
+Practice Extra Practice:
+	select initcap (last_name)Name ,length(last_name) Length from employees 
+	where last_name like '&J%' or last_name like'&M%' or last_name like '&A%' order by last_name;
+Practice 6:
+	select last_name,Round(months_between(sysdate,hire_date)) months_worked from employees;
+Practice 7:
+	select last_name || ' earns ' || to_char(salary,'fm$99,999.000') 
+	|| ' monthly but wants' 
+	|| to_char(salary * 3,'fm$99,999.00') 
+	|| '.' "Dreams Salary" from employees;
+Practice 8:
+	
+Practice 9:
+	
+Practice 10:
+	
+Practice 11:
+	
+Practice 12:
+	
+Practice 13:
+	
+Practice 14:
+	
+	
