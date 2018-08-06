@@ -1,32 +1,72 @@
 Practice 1:
-	
+	create table my_employee(id number(4) 
+	constraint my_employee_id not null, last_name varchar2(25),
+	first_name varchar2(25),userid varchar2(8),salary number(9,2));
 Practice 2:
-	
+	describe my_employee;
 Practice 3:
-	
+	insert into my_employee values(1,'Patel','Rpatel','rpatel',890);
+	insert into my_employee values(1,'Patel','Rpatel','rpatel',890);
+	insert into my_employee values(2,'Watel','Dpatel','Epatel',990);
+	select * from my_employee;
 Practice 4:
-	
+	insert into my_employee(id,last_name,first_name,salary)
+	values(3,'Mortoza','Ahmed','mortozasti',89000);
 Practice 5:
-	
+	select * from my_employee;
 Practice Extra Practice:
 	
 Practice 6:
-	
+	set echo off;
+	set verify off;
+	insert into my_employee values(&p_id,'&&p_last_name','&&p_first_name',
+	lower(substr('&p_fist_name',1,1) || substr('&p_last_name',1,7)),&p_salary);
+	undefined p_first_name
+	undefined p_last_name
 Practice 7:
-	
+	set echo on;
+	set verify on;
+	insert into my_employee values(&p_id,'&&p_last_name','&&p_first_name',
+	lower(substr('&p_fist_name',1,1) || substr('&p_last_name',1,7)),&p_salary);
+	undefined p_first_name
+	undefined p_last_name
 Practice 8:
-	
+	select * from my_employee;
 Practice 9:
-	
+	commit;
 Practice 10:
-	
+	update my_employee set last_name='Drexler' where id = 3;
 Practice 11:
-	
+	update my_employee set salary = 10000 where salary < 900;
 Practice 12:
-	
+	select last_name,salary from my_employee;
 Practice 13:
-	
+	delete from my_employee where last_name = 'Drexler';
 Practice 14:
-	
-
+	select * from my_employee;
+Practice 15:
+	commit;
+Practice 16:
+	set echo off;
+	set verify off;
+	insert into my_employee values(&p_id,'&&p_last_name','&&p_first_name',
+	lower(substr('&p_fist_name',1,1) || substr('&p_last_name',1,7)),&p_salary);
+	set verify on;
+	set echo on;
+	undefined p_first_name
+	undefined p_last_name
+Practice 17:
+	select * from my_employee;
+Practice 18:
+	savepoint step_18;
+Practice 19:
+	delete from my_employee;
+Practice 20:
+	select * from my_employee;
+Practice 21:
+	rollback to step_18;
+Practice 22:
+	select * from my_employee;
+Practice 23:
+	commit;
 	
