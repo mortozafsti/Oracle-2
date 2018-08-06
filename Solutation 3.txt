@@ -23,7 +23,7 @@ Practice 7:
 	|| to_char(salary * 3,'fm$99,999.00') 
 	|| '.' "Dreams Salary" from employees;
 Practice 8:
-	
+	select last_name, lpad(salary, 15, '$') salary from employees;
 Practice 9:
 	
 Practice 10:
