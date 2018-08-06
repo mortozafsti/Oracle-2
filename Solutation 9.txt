@@ -1,0 +1,19 @@
+Practice 1:
+	create table dept(id number(3) constraint department_id_pk primary key,name varchar2(25));
+	desc dept;
+Practice 2:
+	insert into dept 
+		select department_id, department_name from departments;
+Practice 3:
+	create table emp(id number(7),last_name varchar2(25),
+	first_name varchar2(25),dept_id number(3), 
+	constraint ep_ept_fk foreign key (dept_id) references dept (id));
+	
+	desc emp;
+Practice 4:
+	create table employees2 as select employee_id id,
+	first_name,last_name,salary,department_id dept_id from employees;
+Practice 5:
+	
+Practice Extra Practice:
+	
