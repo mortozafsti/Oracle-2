@@ -1,0 +1,41 @@
+Practice 4:
+	select max(salary) Maximum,min(salary) Minimum, 
+	round(sum(salary)), round(avg(salary)) Average  
+	from employees;
+Practice 5:
+	select max(salary) Maximum,min(salary) Minimum, 
+	round(sum(salary)), round(avg(salary)) Average  
+	from employees
+	group by job_id;
+Practice Extra Practice:
+	select job_id,count(*) from employees where job_id = '&job_title' group by job_id;
+Practice 6:
+	select job_id,count(*) from employees group by job_id;
+Practice 7:
+	select distinct manager_id, count(*) "Number of Manager" 
+	from employees group by manager_id;
+Practice 8:
+	select max(salary), min(salary), max(salary) - min(salary) Differences 
+	from employees;
+Practice 9:
+	select manager_id, min(salary) from employees 
+	where manager_id is not null 
+	group by manager_id 
+	having min(salary) > 6000 order by min(salary) desc;
+Practice 10:
+	select count(*) total,sum(decode(to_char(hire_date,'YYYY'),1995,1,0))"1995",
+	sum(decode(to_char(hire_date,'YYYY'),1995,1,0))"1996",
+	sum(decode(to_char(hire_date,'YYYY'),1995,1,0))"1997",
+	sum(decode(to_char(hire_date,'YYYY'),1995,1,0))"1998" 
+	from employees;
+Practice 11:
+	select job_id "JOB",sum(decode(department_id,20,salary)) "dept 20",
+	sum(decode(department_id,50,salary)) "dept 50" ,
+	sum(decode(department_id,80,salary)) "dept 80",
+	sum(decode(department_id,90,salary)) "dept 90" ,
+	sum(salary) "Total"
+	from employees group by job_id	
+
+	
+
+	
