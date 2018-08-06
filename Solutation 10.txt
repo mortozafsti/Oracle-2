@@ -1,0 +1,28 @@
+Practice 1:
+	create view employee_vu as select employee_id,last_name employee,department_id 
+	from employees;
+Practice 2:
+	select * from employee_vu;
+Practice 3:
+	select employee,department_id from employee_vu;
+Practice 4:
+	create view dept50 as select employee_id empno,last_name employee,department_id deptno 
+	from employees where department_id = 50 with check option constraint emp_dep_50;
+Practice 5:
+	desc dept50;
+	select * from dept50;
+Practice 6:
+	Error with check option constraint emp_dep_50 violation;
+Practice 7:
+	create sequence dept_id_seq increment by 10 start with 200 maxvalue 1000;
+Practice 8:
+	insert into dept(id,name)values(dept_id_seq.nextval, 'Administration');
+	insert into dept(id,name)values(dept_id_seq.nextval, 'Education');
+Practice 9:
+	create index dept_name_idx on dept (name);
+Practice 10:
+	create synonym emp for employees;
+
+	
+
+	
