@@ -1,0 +1,17 @@
+connect sys as sysdba
+sys
+create xyz identified by xyz;
+connect sys as sysdba;
+sys
+grant create session to xyz;
+create table test(id number(5) primary key, name varchar2(15));
+Error Msg: insufficient privileges
+connect sys as sysdba
+sys
+grant create table to xyz;
+create table test(id number(5) primary key, name varchar2(15));
+ok
+insert:insert into milton(id,name,phone)values(1,'Hasan',01722365981);
+Using by Sys As sysdba;
+grant select on abc.milton to xyz with grant option;
+select * from abc.milton;
