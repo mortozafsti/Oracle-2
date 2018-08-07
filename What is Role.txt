@@ -1,0 +1,8 @@
+What is role?
+Answer:- A role is a named group of related privilages that can be grated to the user. 
+	 This method makes it easier to revoke and maintain privilages.Roles are typically 
+	 created for database application.
+
+
+
+
