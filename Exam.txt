@@ -38,6 +38,14 @@ Again Connect: connect sys as sysdba and the enter password;
 		
 		select * from user2.student;
 
+Add new Column into user2.student:
+		alter table student add(st_id number(4));
+		grant update (st_id) on user2.student to user1;
+
+		insert into user2.student(id,name,st_id)values(6,'Jamal',1001);
+
+		update user2.student set st_id = 1005 where id = 6;
+		update user2.student set st_id = 1001 where id = 2;
 Finish the Exam;
 
 
