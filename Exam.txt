@@ -1,0 +1,49 @@
+Create  User:
+	User1:
+		create user user1 identified by user1;
+		grant create session to user1;
+		grant create table to user1;
+		alter user user1 quota 500m on system;
+
+	Create Table:
+		create table teacher(id number(3) primary key,name varchar2(10));
+
+	Insert Data Into user1:
+		1.insert into teacher(id,name)values(1,'Razaul Ali');
+		2.insert into teacher(id,name)values(2,'Rofiqul');
+	
+Create User:	
+	User2:
+		create user user2 identified by user2;
+		grant create session to user2;
+		grant create table to user2;
+		alter user user2 quota 500m on system;
+
+	Create Table:
+		create table student(id number(3) primary key,name varchar2(10));
+		
+Insert Data Into user2:
+		1.insert into student(id,name)values(2,'Mortoza');
+		2.insert into student(id,name)values(1,'Mahabub');
+
+Again Connect: connect sys as sysdba and the enter password;
+		grant select,insert on user2.student to user1 with grant option;
+		
+		select * from user2.student;
+
+		insert into user2.student(id,name)values(3,'Manik');
+		insert into user2.student(id,name)values(4,'Momin');
+		insert into user2.student(id,name)values(5,'Kamal');
+
+		
+		select * from user2.student;
+
+Finish the Exam;
+
+
+
+
+
+
+
+
