@@ -46,6 +46,16 @@ Add new Column into user2.student:
 
 		update user2.student set st_id = 1005 where id = 6;
 		update user2.student set st_id = 1001 where id = 2;
+
+Extra:
+	Take Privilages:
+		grant select on hr.departments to user1;
+	Create Table:
+		create table departments as select * from hr.departments;
+		create table employees as select * from hr.employees;
+	Insert Data:
+		insert into employees select * from hr.employees;
+
 Finish the Exam;
 
 
