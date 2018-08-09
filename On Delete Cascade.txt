@@ -20,3 +20,6 @@ Delete From Dep1 Table:
 Describe Table:
 	select * from emp1;
 	select * from dep1;
+Alter Foreign Key:
+	alter table emp1 add(dep_id number(3),constraint emp_dep_fk foreign key 
+	(dep_id) references dep1 on delete cascade);
