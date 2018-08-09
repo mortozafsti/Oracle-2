@@ -1,0 +1,42 @@
+Connect As Sysdba:
+	->conn sys as sysdba;
+Create Two User:
+	->create user ora1 identified by ora1;
+	->create user ora2 identified by ora2;
+Create Two Role:
+	->create role ora1_role;
+	->create role ora2_role;
+Permission to Two Role:
+	->grant create session, create table to ora1_role, ora2_role;
+Permission as a Role to User:
+	->grant ora1_role to ora1;
+	->grant ora2_role to ora2;
+Select Permission to Existing Database Table:
+	->grant select on hr.employees to ora1,ora2;
+	->grant select on hr.departments to ora1,ora2;
+	->grant select on hr.locations to ora1,ora2;
+Allocate Space for Users:
+	->alter user ora1 quota 500m on system;
+	->alter user ora2 quota 500m on system;
+Connect Again As Sysdba:
+	->connect ora1
+Create Table into ora1:
+	->create table emp as select * from hr.employees;
+	->create table dep as select * from hr.departments;
+connect ora2
+Create Table into ora2:
+	->create table emp as select * from hr.employees;
+	->create table dep as select * from hr.departments;
+	->create table loca as select * from hr.locations;
+Connect Again As Sysdba:
+	->conn sys as sysdba;
+Usages Permission to one user into another user:
+	->grant select, insert, update on ora2.emp to ora1;
+	->select * from ora2.emp;
+	->update ora2.emp set department_id = 80 where employee_id = 100;
+	->select * from ora2.emp where employee_id = 100;
+
+
+
+
+
