@@ -1,0 +1,22 @@
+Create Table Dep1:
+	create table dep1(id number(3) primary key,name varchar2(10));
+Insert Into Dep1:
+	insert into dep1(id,name)values(10,'Admin');
+	insert into dep1(id,name)values(20,'Software');
+	insert into dep1(id,name)values(30,'Sales');
+Create Table Emp1:
+	create table emp1(emp_id number(3) primary key,emp_name varchar2(10),
+	dep_id number(3),constraint emp_dep_fk foreign key (dep_id) references dep1 
+	on delete cascade);
+Insert Into Emp1:
+	insert into emp1(emp_id,emp_name,dep_id)values(1,'Mortoza',10);
+	insert into emp1(emp_id,emp_name,dep_id)values(2,'Arefin',10);
+	insert into emp1(emp_id,emp_name,dep_id)values(3,'Mahabub',20);
+	insert into emp1(emp_id,emp_name,dep_id)values(4,'Hasan',30);
+	insert into emp1(emp_id,emp_name,dep_id)values(5,'Polash',30);
+	insert into emp1(emp_id,emp_name,dep_id)values(6,'Pollob',30);
+Delete From Dep1 Table:
+	delete from dep1 where id = 30;
+Describe Table:
+	select * from emp1;
+	select * from dep1;
