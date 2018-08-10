@@ -1,0 +1,28 @@
+create user eid2 identified by eid2;
+create role eid2_role;
+grant create session, create table to eid2_role;
+grant eid2_role to eid2;
+alter user eid2 quota 500m on system;
+connect eid2
+create table department(dep_id number(3) primary key,dep_name varchar2(10));
+create table employee(emp_id number(3) primary key,emp_name varchar2(10),
+	mobile number(11) unique, salary number(11) check (salary > 10000),
+	joining_date date default sysdate,country varchar2(3) default 'BD',
+	dep_id number(3),constraint emp_dep_fk foreign key (dep_id) 
+	references department on delete cascade);
+
+3.	create sequence dep_seq increment by 10;
+	create sequence emp_seq increment by 5;
+	select sequence_name from user_sequences;
+
+4.	create index dep_name_idx on department (dep_name);
+	select index_name from user_indexes;
+
+4.	create index dep_name_idx on department (dep_name);
+	select index_name from user_indexes;
+
+4.	create index dep_name_idx on department (dep_name);
+	select index_name from user_indexes;
+
+4.	create index dep_name_idx on department (dep_name);
+	select index_name from user_indexes;
