@@ -26,7 +26,16 @@ Create Trigger:
 	end
 
 Insert Data:
-	insert into employees select * from hr.employees where employee_id = 100;
+	1.insert into employees select * from hr.employees where employee_id = 100;
+
+	2.insert into employees(EMPLOYEE_ID,FIRST_NAME,LAST_NAME,EMAIL, 
+	  PHONE_NUMBER,HIRE_DATE,JOB_ID,SALARY,COMMISSION_PCT,MANAGER_ID,DEPARTMENT_ID)
+	  select * from hr.employees where employee_id= 101;
+
+
+
+
+
 
 
 
