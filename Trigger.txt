@@ -32,8 +32,35 @@ Insert Data:
 	  PHONE_NUMBER,HIRE_DATE,JOB_ID,SALARY,COMMISSION_PCT,MANAGER_ID,DEPARTMENT_ID)
 	  select * from hr.employees where employee_id= 101;
 
+Show trigger:
+	select trigger_name from user_triggers;
+
+Update:
+	update employees set last_name = 'Mortoza'  where employee_id = 100;
+
+Update_Trigger:
+	create or replace trigger emp_after_update after update on employees 
+	for each row
+	declare
+	begin
+	update employees_backup set last_name=:new.last_name 
+	where EMPLOYEE_ID = :old.EMPLOYEE_ID;
+	dbms_output.put_line('Record Successfully Inserted employees_backup table');
+	end;
+
+Delete_Trigger:
+	create or replace trigger emp_after_delete after delete on employees 
+	for each row
+	declare
+	begin
+	delete employees_backup  
+	where EMPLOYEE_ID = :old.EMPLOYEE_ID;
+	dbms_output.put_line('Record Successfully Inserted employees_backup table');
+	end;
 
 
+
+	
 
 
 
