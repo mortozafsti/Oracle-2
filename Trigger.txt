@@ -1,0 +1,32 @@
+Create User:
+	Create user gm identified by gm;
+
+Grant Permission:
+	grant dba to gm;
+
+Create Table:
+	create table employees as select * from hr.employees;
+	select * from employees;
+
+Delete Data:
+	delete from employees;
+
+Create Backup Table:
+	create table employees_backup as select * from employees;
+
+Create Trigger:
+	create or replace trigger emp_after_insert after insert on employees 
+	for each row
+	declare
+	begin
+	insert into employees_backup values(:new.EMPLOYEE_ID, :new.FIRST_NAME, :new.LAST_NAME,
+ 	:new.EMAIL, :new.PHONE_NUMBER, :new.HIRE_DATE, 
+	:new.JOB_ID, :new.SALARY, :new.COMMISSION_PCT, :new.MANAGER_ID, :new.DEPARTMENT_ID);
+	dbms_output.put_line('Record Successfully Inserted employees_backup table');
+	end
+
+Insert Data:
+	insert into employees select * from hr.employees where employee_id = 100;
+
+
+
