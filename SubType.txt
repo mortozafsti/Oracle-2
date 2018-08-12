@@ -1,0 +1,13 @@
+declare
+   subtype xyz is varchar2(20);
+   subtype message is varchar2(100);
+  
+    salutation xyz;
+    grettings message;
+begin
+   salutation :='G M Mortoza Ahmed ';
+   grettings := 'Welcome to the World of Pl/SQL';
+
+   dbms_output.put_line('Hello '||salutation||grettings);
+
+end;
