@@ -1,0 +1,39 @@
+Nested Loop:
+  declare
+   		x number := 95;
+   		y number := 85;
+	begin
+  		dbms_output.put_line('Outer value: ' || x);
+  		dbms_output.put_line('Outer value: ' || y);
+	declare
+	p number := 10;
+	q number := 20;
+	begin
+	dbms_output.put_line('Inner value: ' || p);
+	dbms_output.put_line('Inner value: ' || q);
+
+	end;
+  end;
+
+
+
+
+Create Table:
+	create table customer( id int not null, 
+	name varchar2(20) not null, age int not null, 
+	address varchar2(20),salary decimal(18,2),
+	primary key(id));
+Insert Data:
+	insert into customer(id,name,age,address,salary)
+	values(3,'Mahabub',33,'JEssore',1500.00);
+
+
+
+
+
+
+
+
+
+
+
