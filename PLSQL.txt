@@ -1,0 +1,8 @@
+declare
+	message1 varchar2(20) := 'Hello, word';
+	message varchar2(20) := 'G M';
+	result varchar2(20) := message1 || message;
+begin
+	dbms_output.put_line(message1 || message);
+	dbms_output.put_line(result);
+end;
