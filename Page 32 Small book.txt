@@ -1,0 +1,68 @@
+Like Operator:
+	declare
+	procedure compare (value varchar2,pattern varchar2) is
+	begin 
+  		if value like pattern then
+     		   dbms_output.put_line('True');
+  		else 
+     		   dbms_output.put_line('False');
+		end if;
+	end;
+
+	begin 
+  		compare('Zara Ali', 'Z%A_i');
+  		compare('Nuhe Ali', 'N%A_i');
+	end;
+
+Between Operator:
+	declare 
+  x number(2) := 10;
+begin 
+  if(x between 5 and 20) Then
+    dbms_output.put_line('True');
+  else
+    dbms_output.put_line('False');
+  end if;
+
+  if(x between 5 and 10) Then
+    dbms_output.put_line('True');
+  else
+    dbms_output.put_line('False');
+  end if;
+  
+  if(x between 11 and 20) Then
+    dbms_output.put_line('True');
+  else
+    dbms_output.put_line('False');
+  end if;
+end;
+
+
+IN And IS NULL Operator:
+	declare
+later varchar2(1) := 'm';
+begin
+  if (later in('a','b','c')) Then
+      dbms_output.put_line('True');
+  else
+      dbms_output.put_line('False');
+  end if;
+
+  if (later in('m','n','o')) Then
+      dbms_output.put_line('True');
+  else
+      dbms_output.put_line('False');
+  end if;
+  
+  if (later is null) Then
+      dbms_output.put_line('True');
+  else
+      dbms_output.put_line('False');
+  end if;
+end;
+
+
+	
+
+
+
