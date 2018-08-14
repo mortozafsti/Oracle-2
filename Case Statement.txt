@@ -1,0 +1,31 @@
+Case Statement:
+
+declare
+   grade char(1) := 'A';
+begin
+   case grade
+        when 'A' then dbms_output.put_line('Excelent');
+        when 'B' then dbms_output.put_line('Very Good');
+        when 'C' then dbms_output.put_line('Well Done');
+        when 'D' then dbms_output.put_line('You Passed');
+        when 'F' then dbms_output.put_line('Better Try Again');
+
+          else dbms_output.put_line('No Such Grade');
+        end case;
+end;
+
+Again:
+
+declare
+   grade char(1) := 'B';
+begin
+   case         
+        when grade = 'A' then dbms_output.put_line('Excelent');
+        when grade = 'B' then dbms_output.put_line('Very Good');
+        when grade = 'C' then dbms_output.put_line('Well Done');
+        when grade = 'D' then dbms_output.put_line('You Passed');
+        when grade = 'F' then dbms_output.put_line('Better Try Again');
+
+          else dbms_output.put_line('No Such Grade');
+        end case;
+end;
