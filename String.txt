@@ -1,0 +1,48 @@
+String Declare:
+
+declare 
+   name varchar2(20);
+   company varchar2(30);
+   introduction clob;
+   choice char(1);
+begin
+   name := ' Mortoza';
+   company := ' IDB BISEW';
+   introduction := ' Hellow I''m Mortoza Ahmed comes from IDB_BISEW';
+   choice := 'y';
+   if choice = 'y' then 
+   dbms_output.put_line(name);
+   dbms_output.put_line(company);
+   dbms_output.put_line(introduction);
+   end if;
+end;
+
+
+Example 1 Functions and Operators:
+declare
+   greetings varchar2(11) := 'hello World';
+begin
+   dbms_output.put_line(upper(greetings));
+   dbms_output.put_line(lower(greetings));
+   dbms_output.put_line(initcap(greetings));
+
+   dbms_output.put_line(substr(greetings,1,1));
+
+   dbms_output.put_line(substr(greetings,-1,1));
+
+   dbms_output.put_line(substr(greetings,7,5));
+  
+   dbms_output.put_line(substr(greetings,2));
+  
+   dbms_output.put_line(instr(greetings, 'e'));
+end;
+
+Example 2:
+declare
+   greetings varchar2(30) := '....hello World....';
+begin
+   dbms_output.put_line(rtrim(greetings, '_'));
+   dbms_output.put_line(ltrim(greetings, '.'));
+   dbms_output.put_line(trim('.' from greetings));
+end;
+
