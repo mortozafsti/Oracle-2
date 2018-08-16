@@ -1,0 +1,17 @@
+Create Procedure:
+
+create or replace procedure mortozaa
+as
+begin
+  dbms_output.put_line('I am Mortoza Ahmed');
+end;
+
+Calling Procedure:
+begin
+ mortozaa;
+end;
+
+Deleting Procedure:
+begin
+ drop procedure mortozaa;
+end;
