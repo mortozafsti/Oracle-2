@@ -1,0 +1,20 @@
+Exception:
+declare
+    c_id customer.id%type := 3;
+    c_name customer.name%type;
+    c_age customer.age%type;
+
+begin
+    select name, age into c_name,c_age
+    from customer where id = c_id;
+
+    dbms_output.put_line('Name: ' || c_name);
+    dbms_output.put_line('Age: ' || c_age);
+
+exception
+    when no_data_found then
+    dbms_output.put_line('No Such Name');
+    when others then
+    dbms_output.put_line('Error');
+
+end;
