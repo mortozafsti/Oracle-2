@@ -1,0 +1,18 @@
+Create Function:
+
+create  or replace function totaldeptname
+return  number is 
+   total number(2) := 0;
+begin
+     select count(*) into total
+     from deptfunction;
+ return total;
+end;
+
+Calling Function:
+declare
+   c number(2);
+begin
+ c := totaldeptname();
+ dbms_output.put_line('Total No. of DeptName: ' || c);
+end;
