@@ -1,0 +1,24 @@
+Create User:
+	create user ahme identified by ahme;
+Give DBA Permission to Ahme:
+	grant dba to ahme;
+Create Table:
+	create table customer(id number(3) primary key,name varchar2(10) not null,
+	mobile number(11) 
+	unique,country varchar2(2) default 'BD');
+Create Sequence:
+	create sequence cus_seq increment by 1;
+Create Customer_backup Table:
+	create table customer_backup(id number(3) primary key,name varchar2(10) not null,
+	mobile number(11) unique,country varchar2(2) default 'BD');
+Create Sequence:
+	create sequence cus_back_seq increment by 1;
+Create Trigger:
+	create or replace trigger cus_after_insert after insert on customer
+	for each row declare begin insert into customer_backup values
+	(:new.id,:new.name, :new.mobile, :new.country);
+	dbms_output.put_line('Successfully Update');
+	end;
+Insert into Data:
+	insert into customer(id,name,mobile,country)
+	values(cus_seq.nextval,'Milton',01722932483,'JP');
