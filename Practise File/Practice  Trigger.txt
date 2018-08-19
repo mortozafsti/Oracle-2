@@ -1,0 +1,18 @@
+Create User:
+	create user rakib identified by rakib;
+Grant Permission To Dba:
+	grant dba to rakib;
+Create Table Dept:
+	create table dept(id number(3) primary key,name varchar2(10) not null, 
+	mobile number(11) unique, country varchar2(3) defaut 'BD');
+Create Table Dept_Backup:
+	create table dept_backup(id number(3) primary key,name varchar2(10) not null, 
+	mobile number(11) unique, country varchar2(3) defaut 'BD');
+Create trigger:
+	create or replace trigger dep_after_insert after insert on dept
+	for each row
+	declare
+	begin
+	insert into dept_backup values(:new.id,:new.name,:new.mobile,:new.country);
+	dbms_output.put_line('Successfully Inserted into dept_backup table');
+	end;
