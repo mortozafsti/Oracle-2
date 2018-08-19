@@ -1,0 +1,24 @@
+Ceate User abc:
+	create user abc identified by abc;
+Permission to DBA:
+	grant dba to abc;
+Create Table abc1:
+	create table abc1(id number(3) primary key, name varchar2(10));
+Inserted Into Table:
+	insert into abc1(id,name)values(1,'Mortoza');
+	insert into abc1(id,name)values(2,'Milton');
+	insert into abc1(id,name)values(3,'Rubel');
+	insert into abc1(id,name)values(4,'Abel');
+Create Table abc2:
+	create table abc2(id number(3) primary key, name varchar2(10),mobile number(11) unique,
+	abc1_id number(3),constraint abc1_abc2_fk foreign key (abc1_id) 
+	references abc1 (id) on delete cascade);
+Inserted Into Table:
+	insert into abc2(id,name,mobile,abc1_id)values(1,'hasan',01722932483,1);
+	insert into abc2(id,name,mobile,abc1_id)values(2,'mali',01722932481,1);
+	insert into abc2(id,name,mobile,abc1_id)values(3,'Rakib',01722932484,2);
+Describe Table:
+	select * from abc1;
+	select * from abc2;
+Delete from Table abc1;
+	delete from abc1 where id = 1;
