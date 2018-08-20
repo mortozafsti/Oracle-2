@@ -1,5 +1,3 @@
-Create Table:
-	
 Create Procedure:
     	create or replace procedure getabcbyuserid(p_id in abc1.id%type,p_name out abc1.name%type)
     	is
@@ -15,3 +13,20 @@ Call procedure and Display data:
     	dbms_output.put_line('UserName: ' || p_name);
     	end;
     	/
+Practise Again Procedure For Division Table:
+Create Procedure:
+	create or replace procedure getbydivisionid(
+	p_id in division.division_id%type,
+	p_name out division.division_name%type)
+	is
+	begin
+	select division_name into p_name  from division where division_id = p_id;
+	end;
+Call procedure and Display data:
+	declare
+	p_name division.division_name%type;
+	begin
+	getbydivisionid(100,p_name);
+	dbms_output.put_line('UserNam: ' || p_name);
+	end;
+	
