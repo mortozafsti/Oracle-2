@@ -1,3 +1,4 @@
+
 Create User:
 	Create user gm identified by gm;
 

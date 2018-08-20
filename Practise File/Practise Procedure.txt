@@ -1,0 +1,17 @@
+Create Table:
+	
+Create Procedure:
+    	create or replace procedure getabcbyuserid(p_id in abc1.id%type,p_name out abc1.name%type)
+    	is
+    	begin
+    	select name into p_name from abc1 where id = p_id;
+    	end;
+    	/
+Call procedure and Display data:
+	declare
+    	p_name abc1.name%type;
+    	begin
+    	getabcbyuserid(1,p_name);
+    	dbms_output.put_line('UserName: ' || p_name);
+    	end;
+    	/
