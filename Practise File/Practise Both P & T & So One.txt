@@ -13,3 +13,12 @@ Insert Data:
 	insert into emp(id,name,mobile)values(1,'Mortoza',01722932483);
 	insert into emp(id,name,mobile)values(2,'Saiful',01722932482);
 	insert into emp(id,name,mobile)values(3,'Rubel',01722932481);
+Create Delete Trigger:
+	create or replace trigger emp_after_delete after delete on emp
+	for each row
+	declare
+	begin
+	delete emp_backup where id = :old.id;
+	dbms_output.put_line('Successfully Delete');
+	end;
+
