@@ -21,4 +21,13 @@ Create Delete Trigger:
 	delete emp_backup where id = :old.id;
 	dbms_output.put_line('Successfully Delete');
 	end;
+Create Update Trigger:
+	create or replace trigger emp_after_update after update on emp
+	for each row
+	declare
+	begin
+	update emp_backup set name = :new.name 
+	where id = :old.id;
+	dbms_output.put_line('Successfully Updated');	
+	end;
 
