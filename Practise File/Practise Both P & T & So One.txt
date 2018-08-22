@@ -21,6 +21,15 @@ Create Delete Trigger:
 	delete emp_backup where id = :old.id;
 	dbms_output.put_line('Successfully Delete');
 	end;
+Create Normal Trigger:
+	create or replace trigger emp_after_insert after insert on emp
+	for each row
+	declare
+	begin
+	insert into emp_backup values(:new.id,:new.name);
+	dbms_output.put_line('Successfully Inserted');
+	end;
+
 Create Update Trigger:
 	create or replace trigger emp_after_update after update on emp
 	for each row
