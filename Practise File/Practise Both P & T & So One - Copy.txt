@@ -1,0 +1,42 @@
+Create Table:
+	create table emp(id number(3),name varchar2(10),mobile number(11));
+	create table emp_backup(id number(3),name varchar2(10),mobile number(11));
+Create trigger:
+	create or replace trigger emp_after_insert after insert on emp
+	for each row
+	declare
+	begin
+	insert into emp_backup values(:new.id,:new.name,:new.mobile);
+	dbms_output.put_line('Successfully Inserted');
+	end;
+Insert Data:
+	insert into emp(id,name,mobile)values(1,'Mortoza',01722932483);
+	insert into emp(id,name,mobile)values(2,'Saiful',01722932482);
+	insert into emp(id,name,mobile)values(3,'Rubel',01722932481);
+Create Delete Trigger:
+	create or replace trigger emp_after_delete after delete on emp
+	for each row
+	declare
+	begin
+	delete emp_backup where id = :old.id;
+	dbms_output.put_line('Successfully Delete');
+	end;
+Create Normal Trigger:
+	create or replace trigger emp_after_insert after insert on emp
+	for each row
+	declare
+	begin
+	insert into emp_backup values(:new.id,:new.name);
+	dbms_output.put_line('Successfully Inserted');
+	end;
+
+Create Update Trigger:
+	create or replace trigger emp_after_update after update on emp
+	for each row
+	declare
+	begin
+	update emp_backup set name = :new.name 
+	where id = :old.id;
+	dbms_output.put_line('Successfully Updated');	
+	end;
+
