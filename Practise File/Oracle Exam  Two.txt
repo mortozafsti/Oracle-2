@@ -1,0 +1,28 @@
+Connect Database:
+	connect sys as sysdba;
+Create User:
+	create user exam1 identified by exam1;
+Grant Permission:
+	grant dba to exam1;
+Create Table:
+	create table student(s_id number(3) primary key,s_name varchar2(10) not null);
+Create Sequence:
+	create sequence s_seq increment by 5;
+Create Procedure:
+	create or replace procedure getbyid(p_id in student.s_id%type,p_name out student.s_name%type)
+    	is
+    	begin
+    	select s_name into p_name from student where s_id = p_id;
+    	end;
+    	/
+Insert Data:
+	insert into student values(s_seq.nextval,'Mortoza');
+	insert into student values(s_seq.nextval,'Mahabub');
+Procedure Calling And Display Data:
+    declare
+    p_name student.s_name%type;
+    begin
+    getbyid(1,p_name);
+    dbms_output.put_line('S_Name: ' || p_name);
+    end;
+    /
