@@ -1,0 +1,63 @@
+Connect to The Database:
+	connect sys as sysdba
+	Enter Password:Sys
+Create User ABCD:
+	create user abcd identified by abcd;
+Grant Permission:
+	grant dba to abcd;
+Create Table:
+	create table customers(id number(3) primary key,name varchar2(10) not null,
+	mobile number(11) unique,country varchar2(8) default 'BD');
+Create Backup Table:
+	create table customers_backup(id number(3) primary key,name varchar2(10) not null,
+	mobile number(11) unique,country varchar2(8) default 'BD');
+Create Sequence:
+	create sequence cus_seqs increment by 1 start with 1 nocycle;
+Create Trigger:
+	create or replace trigger customer_after_insert after insert on customers
+    for each row
+    declare
+    begin
+    insert into customers_backup values(:new.id,:new.name,:new.mobile,:new.country);
+    dbms_output.put_line('Successfully Inserted into Customers_backup Table');
+    end;
+    /
+Inserted Data Into Customers Table:
+	insert into customers(id,name,mobile,country)values(cus_seqs.nextval,'Mortoza',01722932483,'JP');
+	insert into customers(id,name,mobile,country)values(cus_seqs.nextval,'Mahabub',01722932481,'KU');
+	insert into customers(id,name,mobile,country)values(cus_seqs.nextval,'Milton',01722932441,'Mu');
+	insert into customers(id,name,mobile,country)values(cus_seqs.nextval,'Kamal',01722942441,'KJ');
+Create update Trigger:
+	create or replace trigger customer_after_update after update on customers
+    	for each row
+    	declare
+    	begin
+    	update  customers_backup set name=:new.name where id = :old.id
+    	dbms_output.put_line('Successfully Updated into Customers_backup Table');
+    	end;
+    	/
+Delete_Trigger:
+	create or replace trigger emp_after_delete after delete on employees 
+	for each row
+	declare
+	begin
+	delete employees_backup  
+	where EMPLOYEE_ID = :old.EMPLOYEE_ID;
+	dbms_output.put_line('Record Successfully Inserted employees_backup table');
+	end;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
