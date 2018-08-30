@@ -1,0 +1,48 @@
+Create Procedure:
+	create or replace procedure insertcustomer(p_id in customers.id%type,p_name in customers.name%type,p_mobile in customers.mobile%type,p_country in customers.country%type)
+    	is
+    	begin
+    	insert into customers(id,name,mobile,country)values(p_id,p_name,p_mobile,p_country);
+    	end;
+    	/
+Insert Data By Procedure:
+	begin
+    	insertcustomer(110,'Hanif',01722993654,'JaF');
+    	end;
+    	/
+Create Update Data By Procedure:
+	create or replace procedure updatecustomer(p_id in customers.id%type,p_name in customers.name%type,p_mobile in customers.mobile%type,p_country in customers.country%type)
+    	is
+    	begin
+    	update customers set name=p_name,mobile=p_mobile,country=p_country where id = p_id;
+    	end;
+    	/
+Call Update:
+	begin
+    	updatecustomer(110,'Mr Hanif',01722932458,'NY');
+    	end;
+    	/
+
+Create Delete Data By Procedure:
+	create or replace procedure deletecustomer(p_id in customers.id%type)
+    	is
+    	begin
+    	delete from customers where id = p_id;
+    	end;
+    	/
+Call Delete:
+	begin
+    	deletecustomer(110);
+    	end;
+    	/
+
+
+	
+
+
+
+
+
+
+
+
