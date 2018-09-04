@@ -1,0 +1,49 @@
+Create Procedure:
+    	create or replace procedure getabcbyuserid(p_id in abc1.id%type,p_name out abc1.name%type)
+    	is
+    	begin
+    	select name into p_name from abc1 where id = p_id;
+    	end;
+    	/
+Call procedure and Display data:
+	declare
+    	p_name abc1.name%type;
+    	begin
+    	getabcbyuserid(1,p_name);
+    	dbms_output.put_line('UserName: ' || p_name);
+    	end;
+    	/
+Practise Again Procedure For Division Table:
+Create Procedure:
+	create or replace procedure getbydivisionid(
+	p_id in division.division_id%type,
+	p_name out division.division_name%type)
+	is
+	begin
+	select division_name into p_name  from division where division_id = p_id;
+	end;
+Call procedure and Display data:
+	declare
+	p_name division.division_name%type;
+	begin
+	getbydivisionid(100,p_name);
+	dbms_output.put_line('UserNam: ' || p_name);
+	end;
+
+Practise Again Procedure For Thana Table:
+	Create Procedure:
+	create or replace procedure getbyid(
+	p_id in thana.thana_id%type,
+	p_name out thana.thana_name%type)
+	is
+	begin
+	select thana_name into p_name from thana where thana_id = p_id;
+	end; 
+Call procedure and Display data:
+	declare
+	p_name thana.thana_name%type;
+	begin
+	getbyid(223,p_name);
+	dbms_output.put_line('Thana Name: ' || p_name);
+	end;
+	
