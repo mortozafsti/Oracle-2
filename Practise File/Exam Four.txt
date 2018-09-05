@@ -1,0 +1,32 @@
+Create User:
+	create user kamal identified by kamal;
+Permission to User:
+	grant dba to kamal;
+Connect to User:
+	connect kamal;
+Create Table:
+	create table customer(id number(3) primary key,name varchar2(10),mobile number(11) unique,country varchar2(10));
+	create table customer_backup(id number(3) primary key,name varchar2(10),mobile number(11) unique,country varchar2(10));
+Create Trigger:
+    create or replace trigger cus_after_insert after insert on customer
+    for each row
+    declare
+    begin
+    insert into customer_backup values(:new.id,:new.name,:new.mobile,:new.country);
+    dbms_output.put_line('Successfully Inserted');
+    end;
+    /
+Insert Data Into Table by Trigger:
+	insert into customer(id,name,mobile,country)values(111,'Mortoza',01722932483,'BD');
+Create Procedure:
+	create or replace procedure insertcustomer(p_id in customer.id%type,p_name in customer.name%type,p_mobile in customer.mobile%type,p_country in customer.country%type)
+    	is
+    	begin
+    	insert into customer(id,name,mobile,country)values(p_id,p_name,p_mobile,p_country);
+    	end;
+    	/
+Insert By Procedure:
+	begin
+    	insertcustomer(112,'Hanif',01722932481,'JP');
+    	end;
+    	/
