@@ -1,0 +1,58 @@
+Create User:
+	create user gm1 identified by gm1;
+Grant Permission:
+	grant dba to gm1;
+Connect User gm1:
+	connect gm1;
+Create Table:
+		create table student(id number(3) primary key,name varchar2(10), mobile number(11) unique,country varchar2(3));
+	Create Sequence:
+		create sequence stu_seq increment by 1 start with 1 nocache nocycle;
+	Show All Sequence:
+		select sequence_name from user_sequences;
+	Create Index On Name Column:
+		create index name_idx on student(name);
+	Show Index:
+		select index_name from user_indexes;
+	Create Trigger:
+		create or replace trigger stu_after_insert after insert on student
+		for each row
+		declare
+		begin
+		insert into teacher values(:new.id,:new.name,:new.mobile,:new.country);
+		dbms_output.put_line('Successfully Inserted');
+		end;
+		/
+	Insert Data:
+		insert into student(id,name,mobile,country)values(stu_seq.nextval,'Mortoza',01722932483,'JP');
+		insert into student(id,name,mobile,country)values(stu_seq.nextval,'Milton',01722932482,'KP');
+	Create Update Trigger:
+		create or replace trigger stu_after_update after update on student
+		for each row
+		declare
+		begin
+		update student set name=:new.name where id =:old.id;
+		dbms_output.put_line('Successfully Updated');
+		end;
+		/
+	Create DeleteTrigger:
+		create or replace trigger stu_after_delete after delete on student
+		for each row
+		declare
+		begin
+		delete teacher  where id =:old.id;
+		dbms_output.put_line('Successfully Deleted');
+		end;
+		/
+Create Table:
+		create table teacher(id number(3) primary key,name varchar2(10), mobile number(11) unique,country varchar2(3));
+	Create Sequence:
+		create sequence tec_seq increment by 5 start with 1 nocache nocycle;
+	Show All Sequence:
+		select sequence_name from user_sequences;
+	Create Index On Name Column:
+		create index t_name_idx on teacher(name);
+	Show Index:
+		select index_name from user_indexes;
+
+	
