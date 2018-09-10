@@ -44,7 +44,7 @@ Create Trigger for Delete:
     	declare
     	begin
     	delete employee_backup where emp_id = :new.emp_id;
-    	dbms_output.put_line('Successfully Deleted');
+    	dbms_output.put_line('Successfully Deleted');                     
     	end;
     	/
 Create Sequence:
