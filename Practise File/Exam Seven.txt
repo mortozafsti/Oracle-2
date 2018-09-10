@@ -1,0 +1,10 @@
+Add New Column Email:
+	alter table employee add email varchar2(21) unique;
+Create Table:
+	create table emp(id number(3),name varchar2(11));
+Add Primary Key:
+	alter table emp add constraint emp_id_pk primary key(id);
+Again Add Two New Column:
+	alter table emp add (mobile number(11) unique,country varchar2(3));
+Add Constraint:
+	alter table emp modify name varchar2(11) unique;
