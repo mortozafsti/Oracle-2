@@ -1,0 +1,350 @@
+SQL> connect sys as sysdba;
+Connected.
+SQL> create user finalexam1 identified by finalexam1;
+
+User created.
+
+SQL> grant dba to finalexam1;
+
+Grant succeeded.
+
+SQL> connect finalexam1;
+Connected.
+SQL> create table dep(dep_id number(3) primary key,dep_name varchar2(10),mobile number(11) unique,country varchar2(3));
+
+Table created.
+
+SQL> create table dep_backup(dep_id number(3) primary key,dep_name varchar2(10),mobile number(11) unique,country varchar2(3));
+
+Table created.
+
+SQL> desc dep;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEP_ID                                    NOT NULL NUMBER(3)
+ DEP_NAME                                           VARCHAR2(10)
+ MOBILE                                             NUMBER(11)
+ COUNTRY                                            VARCHAR2(3)
+
+SQL> desc dep_backup;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEP_ID                                    NOT NULL NUMBER(3)
+ DEP_NAME                                           VARCHAR2(10)
+ MOBILE                                             NUMBER(11)
+ COUNTRY                                            VARCHAR2(3)
+
+SQL> create or replace trigger dep_after_insert after insert on dep
+  2  for each row
+  3  declare
+  4  begin
+  5  insert into dep_backup values(:new.dep_id,:new.dep_name,:new.mobile,:new.country);
+  6  dbms_output.put_line('Successfully Inserted');
+  7  end;
+  8  /
+
+Trigger created.
+
+SQL> create or replace trigger dep_after_update after update on dep
+  2  for each row
+  3  declare
+  4  begin
+  5  update dep_backup set dep_name = :new.dep_name where dep_id = :old.dep_id;
+  6  dbms_output.put_line('Successfully Updated');
+  7  end;
+  8  /
+
+Trigger created.
+
+SQL> create or replace trigger dep_after_delete after delete on dep
+  2  for each row
+  3  declare
+  4  begin
+  5  delete dep_backup where dep_id = :old.dep_id;
+  6  dbms_output.put_line('Successfully Deleted');
+  7  end;
+  8  /
+
+Trigger created.
+
+SQL> create sequence dep_seqs increment by 5 start with 1 maxvalue 50 nocycle nocache;
+
+Sequence created.
+
+SQL> create sequence dep_back_seqs increment by 10 start with 100 maxvalue 500 nocycle nocache;
+
+Sequence created.
+
+SQL> insert into dep(dep_id,dep_name,mobile,country)values(dep_seqs.nextval,'Mortoza',01722932483,'BD');
+
+1 row created.
+
+SQL> insert into dep(dep_id,dep_name,mobile,country)values(dep_seqs.nextval,'Milton',01722932423,'JP');
+
+1 row created.
+
+SQL> insert into dep(dep_id,dep_name,mobile,country)values(dep_seqs.nextval,'Shohag',01722932422,'CD');
+
+1 row created.
+
+SQL> insert into dep(dep_id,dep_name,mobile,country)values(dep_seqs.nextval,'Saiful',01722932421,'SR');
+
+1 row created.
+
+SQL> insert into dep(dep_id,dep_name,mobile,country)values(dep_seqs.nextval,'Mission',01722931421,'AS');
+
+1 row created.
+
+SQL> insert into dep(dep_id,dep_name,mobile,country)values(dep_seqs.nextval,'Nazmul',01722931411,'US');
+
+1 row created. 
+
+SQL> select * from dep;
+
+    DEP_ID DEP_NAME       MOBILE COU                                            
+---------- ---------- ---------- ---                                            
+         1 Mortoza    1722932483 BD                                             
+         6 Milton     1722932423 JP                                             
+        11 Shohag     1722932422 CD                                             
+        16 Saiful     1722932421 SR                                             
+        21 Mission    1722931421 AS                                             
+        26 Nazmul     1722931411 US                                             
+
+6 rows selected.
+
+SQL> select * from dep_backup;
+
+    DEP_ID DEP_NAME       MOBILE COU                                            
+---------- ---------- ---------- ---                                            
+         1 Mortoza    1722932483 BD                                             
+         6 Milton     1722932423 JP                                             
+        11 Shohag     1722932422 CD                                             
+        16 Saiful     1722932421 SR                                             
+        21 Mission    1722931421 AS                                             
+        26 Nazmul     1722931411 US                                             
+
+6 rows selected.
+
+SQL> update dep set dep_name = 'Titu' where dep_id = 26;
+
+1 row updated.
+
+SQL> select * from dep;
+
+    DEP_ID DEP_NAME       MOBILE COU                                            
+---------- ---------- ---------- ---                                            
+         1 Mortoza    1722932483 BD                                             
+         6 Milton     1722932423 JP                                             
+        11 Shohag     1722932422 CD                                             
+        16 Saiful     1722932421 SR                                             
+        21 Mission    1722931421 AS                                             
+        26 Titu       1722931411 US                                             
+
+6 rows selected.
+
+SQL> select * from dep_backup;
+
+    DEP_ID DEP_NAME       MOBILE COU                                            
+---------- ---------- ---------- ---                                            
+         1 Mortoza    1722932483 BD                                             
+         6 Milton     1722932423 JP                                             
+        11 Shohag     1722932422 CD                                             
+        16 Saiful     1722932421 SR                                             
+        21 Mission    1722931421 AS                                             
+        26 Titu       1722931411 US                                             
+
+6 rows selected.
+
+SQL> delete from dep where dep_id = 21;
+
+1 row deleted.
+
+SQL> select * from dep;
+
+    DEP_ID DEP_NAME       MOBILE COU                                            
+---------- ---------- ---------- ---                                            
+         1 Mortoza    1722932483 BD                                             
+         6 Milton     1722932423 JP                                             
+        11 Shohag     1722932422 CD                                             
+        16 Saiful     1722932421 SR                                             
+        26 Titu       1722931411 US                                             
+
+SQL> select * from dep_backup;
+
+    DEP_ID DEP_NAME       MOBILE COU                                            
+---------- ---------- ---------- ---                                            
+         1 Mortoza    1722932483 BD                                             
+         6 Milton     1722932423 JP                                             
+        11 Shohag     1722932422 CD                                             
+        16 Saiful     1722932421 SR                                             
+        26 Titu       1722931411 US                                             
+
+SQL> create or replace procedure insertdata(p_id in dep.dep_id%type,p_name in dep.dep_name%type,p_mobile in dep.mobile%type,p_country in dep.country%type)
+  2  is
+  3  begin
+  4  insert into dep(dep_id,dep_name,mobile,country)values(p_id,p_name,p_mobile,p_country);
+  5  end;
+  6  /
+
+Procedure created.
+
+SQL> create or replace procedure updatedata(p_id in dep.dep_id%type,p_name in dep.dep_name%type,p_mobile in dep.mobile%type,p_country in dep.country%type)
+  2  is
+  3  begin
+  4  update dep set dep_name = p_name,mobile = p_mobile,country = p_country where dep_id = p_id;
+  5  end;
+  6  /
+
+Procedure created.
+
+SQL> create or replace procedure deletedata(p_id in dep.dep_id%type)
+  2  is
+  3  begin
+  4  delete from dep where dep_id = p_id;
+  5  end;
+  6  /
+
+Procedure created.
+
+SQL> begin
+  2  insertdata(dep_seqs.nextval,'Admin',01722932488,'KU');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> begin
+  2  insertdata(dep_seqs.nextval,'Software',01722932489,'SW');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> begin
+  2  insertdata(dep_seqs.nextval,'Sales',01722932485,'NZ');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from dep;
+
+    DEP_ID DEP_NAME       MOBILE COU                                            
+---------- ---------- ---------- ---                                            
+         1 Mortoza    1722932483 BD                                             
+         6 Milton     1722932423 JP                                             
+        11 Shohag     1722932422 CD                                             
+        16 Saiful     1722932421 SR                                             
+        26 Titu       1722931411 US                                             
+        31 Admin      1722932488 KU                                             
+        36 Software   1722932489 SW                                             
+        41 Sales      1722932485 NZ                                             
+
+8 rows selected.
+
+SQL> select * from dep_backup;
+
+    DEP_ID DEP_NAME       MOBILE COU                                            
+---------- ---------- ---------- ---                                            
+         1 Mortoza    1722932483 BD                                             
+         6 Milton     1722932423 JP                                             
+        11 Shohag     1722932422 CD                                             
+        16 Saiful     1722932421 SR                                             
+        26 Titu       1722931411 US                                             
+        31 Admin      1722932488 KU                                             
+        36 Software   1722932489 SW                                             
+        41 Sales      1722932485 NZ                                             
+
+8 rows selected.
+
+SQL> begin
+  2  updatedata(31,'Admins',01722932488,'KU');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from dep;
+
+    DEP_ID DEP_NAME       MOBILE COU                                            
+---------- ---------- ---------- ---                                            
+         1 Mortoza    1722932483 BD                                             
+         6 Milton     1722932423 JP                                             
+        11 Shohag     1722932422 CD                                             
+        16 Saiful     1722932421 SR                                             
+        26 Titu       1722931411 US                                             
+        31 Admins     1722932488 KU                                             
+        36 Software   1722932489 SW                                             
+        41 Sales      1722932485 NZ                                             
+
+8 rows selected.
+
+SQL> select * from dep_backup;
+
+    DEP_ID DEP_NAME       MOBILE COU                                            
+---------- ---------- ---------- ---                                            
+         1 Mortoza    1722932483 BD                                             
+         6 Milton     1722932423 JP                                             
+        11 Shohag     1722932422 CD                                             
+        16 Saiful     1722932421 SR                                             
+        26 Titu       1722931411 US                                             
+        31 Admins     1722932488 KU                                             
+        36 Software   1722932489 SW                                             
+        41 Sales      1722932485 NZ                                             
+
+8 rows selected.
+
+SQL> begin
+  2  deletedata(41);
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from dep;
+
+    DEP_ID DEP_NAME       MOBILE COU                                            
+---------- ---------- ---------- ---                                            
+         1 Mortoza    1722932483 BD                                             
+         6 Milton     1722932423 JP                                             
+        11 Shohag     1722932422 CD                                             
+        16 Saiful     1722932421 SR                                             
+        26 Titu       1722931411 US                                             
+        31 Admins     1722932488 KU                                             
+        36 Software   1722932489 SW                                             
+
+7 rows selected.
+
+SQL> select * from dep_backup;
+
+    DEP_ID DEP_NAME       MOBILE COU                                            
+---------- ---------- ---------- ---                                            
+         1 Mortoza    1722932483 BD                                             
+         6 Milton     1722932423 JP                                             
+        11 Shohag     1722932422 CD                                             
+        16 Saiful     1722932421 SR                                             
+        26 Titu       1722931411 US                                             
+        31 Admins     1722932488 KU                                             
+        36 Software   1722932489 SW                                             
+
+7 rows selected.
+
+SQL> create view dep_view as select dep_id,dep_name,country from dep;
+
+View created.
+
+SQL> select * from dep_view;
+
+    DEP_ID DEP_NAME   COU                                                       
+---------- ---------- ---                                                       
+         1 Mortoza    BD                                                        
+         6 Milton     JP                                                        
+        11 Shohag     CD                                                        
+        16 Saiful     SR                                                        
+        26 Titu       US                                                        
+        31 Admins     KU                                                        
+        36 Software   SW                                                        
+
+7 rows selected.
+
+SQL> spool off;
